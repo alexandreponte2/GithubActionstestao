@@ -1,7 +1,7 @@
 import json
 
 def lambda_handler(event, context):
-    body = "Hello from goku!"
+    body = "Hello from freeezaaaaa!"
     statusCode = 200
     return {
         "statusCode": statusCode,

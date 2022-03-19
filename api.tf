@@ -59,6 +59,18 @@ resource "aws_api_gateway_deployment" "apideploy" {
   stage_name  = "test"
 }
 
+resource "aws_api_gateway_deployment" "apideploy2" {
+  depends_on = [
+    aws_api_gateway_integration.lambda,
+    aws_api_gateway_integration.lambda_root,
+  ]
+
+  rest_api_id = aws_api_gateway_rest_api.apiLambda.id
+  stage_name  = "prod"
+}
+
+
+
 
 resource "aws_lambda_permission" "apigw" {
   statement_id  = "AllowAPIGatewayInvoke"

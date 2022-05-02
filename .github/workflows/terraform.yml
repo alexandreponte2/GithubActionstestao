@@ -21,7 +21,7 @@ jobs:
       run: |
         echo "Running on branch ${{ github.ref }}"
         if [ "${{ github.ref }}" = "refs/heads/develop" ]; then
-          echo "::set-output name=env_name::${{ secrets.AWS_ACCESS_KEY_ID }}"
+          echo "::set-output name=env_name::AWS_ACCESS_KEY_ID"
         elif [ "${{ github.ref }}" = "refs/heads/main" ]; then
           echo "::set-output name=env_name::Test"
         else
@@ -44,7 +44,7 @@ jobs:
 
     - name: Terraform init
       env:
-        AWS_ACCESS_KEY_ID: ${{ env_name }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.env_name }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: terraform init -input=false
 
@@ -56,6 +56,6 @@ jobs:
 
     - name: Terraform apply
       env:
-        AWS_ACCESS_KEY_ID: ${{ env_name }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.env_name }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: terraform apply -auto-approve -input=false

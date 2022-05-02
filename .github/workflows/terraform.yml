@@ -21,7 +21,7 @@ jobs:
       run: |
         echo "Running on branch ${{ github.ref }}"
         if [ "${{ github.ref }}" = "refs/heads/develop" ]; then
-          echo "::set-output name=env_name::secrets.AWS_ACCESS_KEY_ID"
+          echo "::set-output name=env_name::${{ secrets.AWS_ACCESS_KEY_ID }}"
         elif [ "${{ github.ref }}" = "refs/heads/main" ]; then
           echo "::set-output name=env_name::Test"
         else
@@ -37,6 +37,8 @@ jobs:
         unzip terraform_"$tf_version"_linux_amd64.zip
         sudo mv terraform /usr/local/bin/
 
+    - name: Use variable setup in previous step
+      run: echo "I'm using variable ${{ steps.branch_check.outputs.env_name }}"
 
 
     - name: Verify Terraform version

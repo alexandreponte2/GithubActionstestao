@@ -37,10 +37,6 @@ jobs:
         unzip terraform_"$tf_version"_linux_amd64.zip
         sudo mv terraform /usr/local/bin/
 
-    - name: Use variable setup in previous step
-      run: echo "I'm using variable ${{ steps.branch_check.outputs.env_name }}"
-
-
     - name: Verify Terraform version
       run: terraform --version
 

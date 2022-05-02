@@ -2,13 +2,13 @@ name: Terraform Apply
 
 on:
   push:
-    branches:
-      - main
-    paths-ignore:
-      - '**.md'
-  pull_request:
-      paths-ignore:
-      - '**.md'
+  #   branches:
+  #     - main
+  #   paths-ignore:
+  #     - '**.md'
+  # pull_request:
+  #     paths-ignore:
+  #     - '**.md'
 
 jobs:
   terraform_apply:

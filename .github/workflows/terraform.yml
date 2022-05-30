@@ -42,9 +42,10 @@ jobs:
 
     - name: Terraform init
       env:
+        eu: ${{ secrets.GOKU}}
         AWS_ACCESS_KEY_ID: ${{ steps.branch_check.outputs.env_name }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: echo $AWS_SECRET_ACCESS_KEY
+      run: echo $eu
       #run: terraform init -input=false
 
     - name: Terraform format

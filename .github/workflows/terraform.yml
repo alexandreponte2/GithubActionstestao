@@ -44,7 +44,8 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ steps.branch_check.outputs.env_name }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      run: terraform init -input=false
+      run: echo $AWS_SECRET_ACCESS_KEY
+      #run: terraform init -input=false
 
     - name: Terraform format
       run: terraform fmt
